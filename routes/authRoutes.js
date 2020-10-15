@@ -1,4 +1,3 @@
-  
 const passport = require('passport');
 
 module.exports = app => {
@@ -19,5 +18,4 @@ module.exports = app => {
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
-
 };
