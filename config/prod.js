@@ -5,4 +5,4 @@ module.exports = {
     cookieKey: process.env.COOKIE_KEY//'1Xxp382GgnXxYz49528',
 
 }
-//'mongodb+srv://admin:jvoeRs7qa7HQ8TNm@cluster0.jbqhq.mongodb.net/cluster?retryWrites=true&w=majority
+///'mongodb+srv://admin:jvoeRs7qa7HQ8TNm@cluster0.jbqhq.mongodb.net/cluster?retryWrites=true&w=majority
