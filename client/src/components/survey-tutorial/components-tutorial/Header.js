@@ -43,5 +43,5 @@ class Header extends Component {
 function mapStateToProps({ auth }) {
   return { auth };
 }
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
 export default connect(mapStateToProps)(Header);
