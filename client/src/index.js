@@ -11,7 +11,7 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/paper-kit.scss";
 import "assets/demo/demo.css";
 import "assets/demo/react-demo.css";
-//style-delete-before-running
+//style-delete-before-deploy
 import 'materialize-css/dist/css/materialize.min.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
