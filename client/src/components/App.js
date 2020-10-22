@@ -67,14 +67,14 @@ class App extends Component {
             />
             {/*vvv tutorial code(main.js + import redux + Provider wrap(store)) */}
             
-            <Route path="/tut-landing" render= {(props) => <div><Header /> <Landing /></div>} />
+            <Route path="/" render= {(props) => <div><Header /> <Landing /></div>} />{/*tut-landing*/}
             <Route exact path="/tut-surveys" render= {(props) => <div><Header /> <Dashboard /></div>} />
             <Route path="/tut-surveys/new" render= {(props) => <div><Header /> <SurveyNew /></div>} />
             {/*^^^ tutorial code(main.js + import redux + Provider wrap(store)) */}
 
             <Route path="/sections" render={(props) => <Sections {...props} />} />
             <Route
-                path="/"
+                path="/present"
                 render={(props) => <Presentation {...props} />}
             />
             <Route path="/about-us" render={(props) => <AboutUs {...props} />} />
