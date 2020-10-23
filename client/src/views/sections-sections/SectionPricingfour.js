@@ -10,7 +10,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
-
+import StripeCheckout from '../../components/Payments/stripe-button.js'
 // core components
 
 function SectionPricingfour() {
@@ -109,15 +109,7 @@ function SectionPricingfour() {
                         Open Source Elements
                       </li>
                     </ul>
-                    <Button
-                      className="btn-round"
-                      color="success"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      outline
-                    >
-                      Current plan
-                    </Button>
+                    <StripeCheckout />
                   </CardBody>
                 </Card>
               </Col>
@@ -127,7 +119,7 @@ function SectionPricingfour() {
                     <h6 className="card-category text-success">
                       Business
                     </h6>
-                    <CardTitle tag="h1">$1499</CardTitle>
+                    <CardTitle tag="h1">$199</CardTitle>
                     <p style={{color: "white"}}>/Lifetime</p>
                     <ul className="text-white">
                       <li>
@@ -158,8 +150,8 @@ function SectionPricingfour() {
                     <Button
                       className="btn-outline-neutral btn-round"
                       color="default"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      href="/api/stripe/3"
+                      // onClick={(e) => e.preventDefault()}
                     >
                       Upgrade plan
                     </Button>

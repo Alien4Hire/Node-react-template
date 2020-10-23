@@ -87,13 +87,13 @@ function RegisterPage() {
                     Register
                   </CardTitle>
                   <div className="social">
-                    <Button className="btn-just-icon mr-1" color="facebook">
+                    <Button className="btn-just-icon mr-1" color="facebook" href="/auth/facebook">
                       <i className="fa fa-facebook" />
                     </Button>
                     <Button className="btn-just-icon mr-1" color="google" href="/auth/google">
                       <i className="fa fa-google" />
                     </Button>
-                    <Button className="btn-just-icon" color="twitter">
+                    <Button className="btn-just-icon" color="twitter" href="/auth/twitter">
                       <i className="fa fa-twitter" />
                     </Button>
                   </div>
