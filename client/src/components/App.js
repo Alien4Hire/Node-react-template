@@ -37,13 +37,14 @@ import TwitterRedesign from "views/examples/TwitterRedesign.js";
 //vv Tutorial vv//
 import Header from './survey-tutorial/components-tutorial/Header.js';
 import Landing from './survey-tutorial/components-tutorial/Landing'
-
+import Dashboard from './survey-tutorial/Dashboard';
+import SurveyNew from './survey-tutorial/components-tutorial/SurveyNew'
 ///npm uninstall materialize-css@next//
 //might keep
 
 //redux + components
-const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
+
+
 
 //is user logged in?
 class App extends Component {
@@ -69,7 +70,9 @@ class App extends Component {
             
             <Route path="/tut-landing" render= {(props) => <div><Header /> <Landing /></div>} />
             <Route exact path="/tut-surveys" render= {(props) => <div><Header /> <Dashboard /></div>} />
+            
             <Route path="/tut-surveys/new" render= {(props) => <div><Header /> <SurveyNew /></div>} />
+            
             {/*^^^ tutorial code(main.js + import redux + Provider wrap(store)) */}
 
             <Route path="/sections" render={(props) => <Sections {...props} />} />

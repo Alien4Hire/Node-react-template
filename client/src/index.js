@@ -6,6 +6,7 @@ import reducers from './components/reducers';
 import reduxThunk from 'redux-thunk';
 import App from './components/App';
 
+
 // styles
 import "assets/css/bootstrap.min.css";
 import "assets/scss/paper-kit.scss";
@@ -13,6 +14,10 @@ import "assets/demo/demo.css";
 import "assets/demo/react-demo.css";
 //style-delete-before-deploy
 import 'materialize-css/dist/css/materialize.min.css';
+//(testing routes without postman(comment out when done)vid 145)
+import axios from 'axios';
+window.axios = axios;
+
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
