@@ -32,7 +32,7 @@ module.exports = app => {
  
   //twitter
   app.get('/auth/twitter',
-  passport.authenticate('twitter', { scope : ['email'] })
+  passport.authenticate('twitter', { scope : ['email'] }, { failureRedirect: '/auth/error' })
   );
 
 app.get('/auth/twitter/callback', 
