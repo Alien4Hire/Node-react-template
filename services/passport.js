@@ -90,7 +90,7 @@ passport.use(
         return done(null, existingUser);
       }
 
-      const user = await new User({ twitterId: profile.id, email: profile.email }).save();
+      const user = await new User({ twitterId: profile.id, email: profile.emails[0].value }).save();
       done(null, user);
     }
   )
