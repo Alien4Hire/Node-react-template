@@ -9,7 +9,9 @@ const userSchema = new Schema({
   password: { type: String },
   date: { type: Date, default: Date.now },
   credits: { type: Number, default: 0 },
-  plan: { type: Number, default: 1 }
+  plan: { type: Number, default: 1 },
+  profilePic: String,
+  verified: {type: String, default: 'False'}
 });
 
-mongoose.model('users', userSchema);
+mongoose.model('users', userSchema); 

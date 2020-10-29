@@ -13,7 +13,7 @@ import "assets/scss/paper-kit.scss";
 import "assets/demo/demo.css";
 import "assets/demo/react-demo.css";
 //style-delete-before-deploy
-import 'materialize-css/dist/css/materialize.min.css';
+//import 'materialize-css/dist/css/materialize.min.css';
 //(testing routes without postman(comment out when done)vid 145)
 import axios from 'axios';
 window.axios = axios;

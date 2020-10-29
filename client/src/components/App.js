@@ -62,6 +62,10 @@ class App extends Component {
                 path="/register"
                 render={(props) => <RegisterPage {...props} />}
             />
+            <Route 
+                path="/login-page" 
+                render={(props) => <LoginPage {...props} />} 
+            />
             <Route
                 path="/nucleo-icons"
                 render={(props) => <NucleoIcons {...props} />}
@@ -80,6 +84,7 @@ class App extends Component {
                 path="/"
                 render={(props) => <Presentation {...props} />}
             />
+
             <Route path="/about-us" render={(props) => <AboutUs {...props} />} />
             <Route
                 path="/add-product"
@@ -97,7 +102,7 @@ class App extends Component {
                 path="/landing-page"
                 render={(props) => <LandingPage {...props} />}
             />
-            <Route path="/login-page" render={(props) => <LoginPage {...props} />} />
+
             <Route
                 path="/product-page"
                 render={(props) => <ProductPage {...props} />}

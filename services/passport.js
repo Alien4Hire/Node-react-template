@@ -8,6 +8,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
+const generator = require('generate-password');
 
 const User = mongoose.model('users');
 
@@ -30,13 +31,18 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleId: profile.id, email: profile.email });
+      const existingUser = await User.findOne({ googleId: profile.id, email: profile.emails[0].value });
 
       if (existingUser) {
         return done(null, existingUser);
       }
-
-      const user = await new User({ googleId: profile.id, email: profile.email }).save();
+      
+      const user = await new User({ 
+        googleId: profile.id, 
+        email: profile.emails[0].value, 
+        profilePic: profile.photos[0].value,
+        password: generator.generate({length:10, numbers:true}) 
+      }).save();
       done(null, user);
     }
   )
@@ -48,16 +54,22 @@ passport.use(
       clientID: keys.FACEBOOK_APP_ID,
       clientSecret: keys.FACEBOOK_APP_SECRET,
       callbackURL: '/auth/facebook/callback',
-      proxy: true
+      proxy: true,
+      profileFields: ['email']
     },
     async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ facebookId: profile.id, email: profile.email });
-
+      const existingUser = await User.findOne({ facebookId: profile.id });
+      // const existingEmail = await User.findOne({ email: profile.email });
       if (existingUser) {
         return done(null, existingUser);
       }
-
-      const user = await new User({ facebookId: profile.id, email: profile.email }).save();
+      console.log(profile);
+      const user = await new User({ 
+        facebookId: profile.id, 
+        email: profile.emails[0].value, 
+        // profilePic: profile.photos[0].value,
+        password: generator.generate({length:10, numbers:true}) 
+      }).save();
       done(null, user);
     }
   )
@@ -72,7 +84,7 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ twitterId: profile.id, email: profile.email });
+      const existingUser = await User.findOne({ twitterId: profile.id });
 
       if (existingUser) {
         return done(null, existingUser);
@@ -102,3 +114,4 @@ module.exports = passport => {
     })
   );
 };
+ 

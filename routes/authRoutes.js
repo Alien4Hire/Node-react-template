@@ -20,7 +20,7 @@ module.exports = app => {
 
   //facebook
   app.get('/auth/facebook',
-    passport.authenticate('facebook')
+    passport.authenticate('facebook', { scope : ['email'] })
   );
 
   app.get('/auth/facebook/callback',
@@ -29,7 +29,7 @@ module.exports = app => {
       // Successful authentication, redirect home.
       res.redirect('/');
     });
-
+ 
   //twitter
   app.get('/auth/twitter',
   passport.authenticate('twitter'));
@@ -44,7 +44,7 @@ app.get('/auth/twitter/callback',
   //other
   app.get('/api/logout', (req, res) => {
     req.logout();
-    res.redirect('/tut-surveys');
+    res.redirect('/register');
   });
 
   app.get('/api/current_user', (req, res) => {
