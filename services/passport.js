@@ -78,8 +78,8 @@ passport.use(
 passport.use(
   new TwitterStrategy(
     {
-      consumerKey: keys.TWITTER_CONSUMER_KEY,
-      consumerSecret: keys.TWITTER_CONSUMER_SECRET,
+      clientID: keys.TWITTER_CONSUMER_KEY,
+      clientSecret: keys.TWITTER_CONSUMER_SECRET,
       callbackURL: '/auth/twitter/callback',
       proxy: true
     },
