@@ -102,11 +102,11 @@ function RegisterPage() {
                     <span>or</span>
                     <div className="line r" />
                   </div>
-                  <Form className="register-form">
-                    <Input placeholder="Email" type="text" />
-                    <Input placeholder="Password" type="password" />
+                  <Form className="register-form" action="/auth/login" method="post">
+                    <Input placeholder="Email" type="text" name="username" />
+                    <Input placeholder="Password" type="password" name="password" />
                     <Input placeholder="Confirm Password" type="password" />
-                    <Button block className="btn-round" color="default">
+                    <Button block className="btn-round" color="default" type="submit" value="Log In">
                       Register
                     </Button>
                   </Form>

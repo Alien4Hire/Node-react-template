@@ -1,8 +1,8 @@
   
 const passport = require('passport');
 require('passport-oauth2');
-const JwtStrategy = require("passport-jwt").Strategy;
-const ExtractJwt = require("passport-jwt").ExtractJwt;
+const LocalStrategy = require("passport-local").Strategy;
+const JwtStrategy = require('passport-jwt').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
@@ -22,6 +22,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+//google
 passport.use(
   new GoogleStrategy(
     {
@@ -63,7 +64,7 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser);
       }
-      console.log(profile);
+      console.log(profile.id);
       const user = await new User({ 
         facebookId: profile.id, 
         email: profile.emails[0].value, 
@@ -78,8 +79,8 @@ passport.use(
 passport.use(
   new TwitterStrategy(
     {
-      clientID: keys.TWITTER_CONSUMER_KEY,
-      clientSecret: keys.TWITTER_CONSUMER_SECRET,
+      consumerKey: keys.TWITTER_CONSUMER_KEY,
+      consumerSecret: keys.TWITTER_CONSUMER_SECRET,
       callbackURL: '/auth/twitter/callback',
       proxy: true
     },
@@ -102,21 +103,44 @@ passport.use(
 );
 
 //user register
-const opts = {};
-opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = keys.secretOrKey;
-module.exports = passport => {
-  passport.use(
-    new JwtStrategy(opts, (jwt_payload, done) => {
-      User.findById(jwt_payload.id)
-        .then(user => {
-          if (user) {
-            return done(null, user);
-          }
-          return done(null, false);
-        })
-        .catch(err => console.log(err));
-    })
-  );
-};
- 
+passport.use(
+  new LocalStrategy(
+    function (username, password, done) {
+      const existingUser = User.findOne({ email: username });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      console.log(username);
+      const user = new User({
+        localId: generator.generate({length:10, numbers:true}),
+        email: username, 
+        password: password 
+      }).save();
+      done(null, user);
+    }
+  )
+);  
+
+// //tutorial jwt.strategy
+// const cookieExtractor = req => {
+//   let token = null;
+//   if(req && req.cookies){
+//     token = req.cookies["access_token"];
+//   }
+//   return token;
+// };
+// //authorization
+// passport.use(new JwtStrategy({
+//   jwtFromRequest: cookieExtractor,
+//   secretOrKey: keys.cookieKey
+// },(payload,done)=>{
+//   User.findById({_id: payload.sub}, (err,user)=>{
+//     if(err)
+//       return done(err,false);
+//     if(user)
+//       return done(null,user);
+//     else
+//       return done(null,false);
+//   })
+// }));
+// //^^
